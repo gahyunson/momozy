@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<style>
+    body {
+        background: #FCE38A;
+        text-align: center;
+        font-family: 'Open Sans', sans-serif;
+        color: #0D3B66;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        padding: 20px;
+        max-width: 600px;
+        margin: 0 auto;
+        background: #FFD166;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        font-size: 36px;
+        margin-bottom: 20px;
+        color: #E71D36;
+    }
+
+    p {
+        font-size: 18px;
+        margin: 0;
+    }
+
+    .todo-link {
+        display: inline-block;
+        background: #E71D36;
+        color: white;
+        text-decoration: none;
+        padding: 10px 20px;
+        margin: 10px;
+        border-radius: 5px;
+        font-size: 16px;
+        transition: background 0.3s, color 0.3s;
+    }
+
+    .todo-link:hover {
+        background: #FF9A8B;
+    }
+</style>
+<head>
+    <title>Home</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div class="container">
+    <h1>MEMO-ZY</h1>
+    <p>MEMO-LIST</p>
+    <p th:text="${title}">The title</p>
+    <p>
+        <a class="todo-link" href="/memo/new">메모 작성</a>
+        <a class="todo-link" href="/memo">메모 목록</a>
+    </p>
+</div>
+</body>
+</html>

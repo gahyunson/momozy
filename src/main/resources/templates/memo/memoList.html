@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<style>
+    body {
+        background: #FCE38A;
+        text-align: center;
+        font-family: 'Open Sans', sans-serif;
+        color: #0D3B66;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        padding: 20px;
+        max-width: 800px;
+        margin: 0 auto;
+        background: #FFD166;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        font-size: 36px;
+        margin-bottom: 20px;
+        color: #E71D36;
+    }
+
+    table {
+        margin: 0 auto;
+        width: 90%;
+        border-collapse: collapse;
+    }
+
+    th,
+    td {
+        border-top: 1px solid #0D3B66; /* 상단 가로 줄만 적용 */
+        border-bottom: none; /* 하단 가로 줄 제거 */
+        padding: 10px;
+        text-align: center;
+    }
+
+
+    /* checkbox가 체크된 상태에서 글자에 취소선을 추가 */
+    .checkbox:checked + td {
+        text-decoration: line-through;
+    }
+    .todo-link {
+        display: inline-block;
+        background: #E71D36;
+        color: white;
+        text-decoration: none;
+        padding: 10px 20px;
+        margin: 10px;
+        border-radius: 5px;
+        font-size: 16px;
+        transition: background 0.3s, color 0.3s;
+    }
+
+    .todo-link:hover {
+        background: #FF9A8B;
+    }
+
+</style>
+<body>
+<div class="container">
+    <h1>MEMO-ZY</h1>
+    <table>
+        <thead>
+        <tr>
+            <th></th>
+            <th>ID</th>
+            <th>HEAD</th>
+            <th>BODY</th>
+            <th>CONSIDER</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="memo : ${memo}">
+            <td><input type="checkbox" class="checkbox" id="checkbox"></td>
+            <td th:text="${memo.id}"></td>
+            <td th:text="${memo.title}"></td>
+            <td th:text="${memo.content}"></td>
+            <td>
+                <form id="edit-form" method="post">
+                    <input type="hidden" name="_method" value="update"/>
+                    <a class="todo-link" th:href="@{/memo/{id}(id=${memo.id})}">EDIT</a>
+                </form>
+                <form id="delete_form" th:action="@{'/memo/deleteMemo/'+${memo.id}}" method="post">
+                    <input type="hidden" name="_method" value="delete"/>
+                    <button class="todo-link">DELETE</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a class="todo-link" href="/">BACK HOME</a>
+    <a class="todo-link" href="/memo/new">ADD MEMO</a>
+</div> <!-- /container -->
+<script>
+</script>
+</body>
+</html>
